@@ -3,7 +3,6 @@
 function statement(customer, movies) {
   let totalAmount = 0;
   let totalfrequentRenterPoints = 0;
-  let result = `Rental Record for ${customer.name}\n`;
   let customerReport = {
     customerName: customer.name
   };
@@ -43,16 +42,14 @@ function statement(customer, movies) {
       name: getMovie(rent.movieID).title,
       amount: calculateAmount (rent)
     });
-    result += `\t${getMovie(rent.movieID).title}\t${calculateAmount (rent)}\n`;
     totalAmount += calculateAmount (rent);
   }
-  // add footer lines
+
   customerReport.totalAmount = totalAmount;
   customerReport.totalfrequentRenterPoints = totalfrequentRenterPoints;
-  result += `Amount owed is ${totalAmount}\n`;
-  result += `You earned ${totalfrequentRenterPoints} frequent renter points\n`;
 
-  return result;
+
+  return outPut(customerReport);
 }
 
 let customer = {
@@ -84,6 +81,17 @@ function getMovie(id){
 
 function isBonus(rent){
   return(getMovie(rent.movieID).code === "new" && rent.days > 2);
+}
+
+function outPut(customerReport){
+  var report = `Rental Record for ${customerReport.customerName}\n`;
+  customerReport.movies.forEach(item => {
+    report += `\t${item.name}\t${item.amount}\n`;
+  });
+  report += `Amount owed is ${customerReport.totalAmount}\n`;
+  report += `You earned ${customerReport.totalfrequentRenterPoints} frequent renter points\n`;
+
+  return report;
 }
 
 console.log(statement(customer, movies))
