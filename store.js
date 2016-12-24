@@ -6,7 +6,7 @@ function statement(customer, movies) {
   let result = `Rental Record for ${customer.name}\n`;
 
   function calculateAmount (thisAmount, rent) {
-    switch (movies[rent.movieID].code) {
+    switch (getMovie(rent.movieID).code) {
       case "regular":
         thisAmount=2;
         if (rent.days>2) {
@@ -27,14 +27,14 @@ function statement(customer, movies) {
   }
 
   for (let rent of customer.rentals) {
-    
+
     //add frequent renter points
     frequentRenterPoints++;
     // add bonus for a two day new release rental
-    if (movies[rent.movieID].code === "new" && rent.days > 2) frequentRenterPoints++;
+    if (getMovie(rent.movieID).code === "new" && rent.days > 2) frequentRenterPoints++;
 
     //print figures for this rental
-    result += `\t${movies[rent.movieID].title}\t${calculateAmount (0, rent)}\n`;
+    result += `\t${getMovie(rent.movieID).title}\t${calculateAmount (0, rent)}\n`;
     totalAmount += calculateAmount (0, rent);
   }
   // add footer lines
