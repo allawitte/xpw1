@@ -5,7 +5,8 @@ function statement(customer, movies) {
   let totalfrequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
 
-  function calculateAmount (thisAmount, rent) {
+  function calculateAmount (rent) {
+    let thisAmount = 0;
     switch (getMovie(rent.movieID).code) {
       case "regular":
         thisAmount=2;
@@ -34,8 +35,8 @@ function statement(customer, movies) {
     if (isBonus(rent)) totalfrequentRenterPoints++;
 
     //print figures for this rental
-    result += `\t${getMovie(rent.movieID).title}\t${calculateAmount (0, rent)}\n`;
-    totalAmount += calculateAmount (0, rent);
+    result += `\t${getMovie(rent.movieID).title}\t${calculateAmount (rent)}\n`;
+    totalAmount += calculateAmount (rent);
   }
   // add footer lines
   result += `Amount owed is ${totalAmount}\n`;
