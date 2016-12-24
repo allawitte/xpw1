@@ -1,10 +1,10 @@
-"use strict"
+"use strict";
 
 function statement (customer, movies, mode) {
-    let totalAmount=0;
-    let totalfrequentRenterPoints=0;
     let customerReport={
-        customerName: customer.name
+        customerName: customer.name,
+        totalfrequentRenterPoints: 0,
+        totalAmount: 0
     };
     customerReport.movies=[];
 
@@ -32,18 +32,15 @@ function statement (customer, movies, mode) {
 
     for (let rent of customer.rentals) {
 
-        totalfrequentRenterPoints++;
+        customerReport.totalfrequentRenterPoints++;
         if (isBonus (rent)) totalfrequentRenterPoints++;
 
         customerReport.movies.push ({
             name: getMovie (rent.movieID).title,
             amount: calculateAmount (rent)
         });
-        totalAmount+=calculateAmount (rent);
+        customerReport.totalAmount+=calculateAmount (rent);
     }
-
-    customerReport.totalAmount=totalAmount;
-    customerReport.totalfrequentRenterPoints=totalfrequentRenterPoints;
 
     return outPut (customerReport, mode);
 }
@@ -81,7 +78,7 @@ function isBonus (rent) {
 
 function outPut (customerReport, mode) {
     var report='';
-    if (mode === 'txt') {
+    if (mode==='txt') {
         report=`Rental Record for ${customerReport.customerName}\n`;
         customerReport.movies.forEach (item => {
             report+=`\t${item.name}\t${item.amount}\n`;
