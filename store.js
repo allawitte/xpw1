@@ -31,7 +31,7 @@ function statement(customer, movies) {
     //add frequent renter points
     totalfrequentRenterPoints++;
     // add bonus for a two day new release rental
-    if (getMovie(rent.movieID).code === "new" && rent.days > 2) totalfrequentRenterPoints++;
+    if (isBonus(rent)) totalfrequentRenterPoints++;
 
     //print figures for this rental
     result += `\t${getMovie(rent.movieID).title}\t${calculateAmount (0, rent)}\n`;
@@ -69,6 +69,10 @@ let movies = {
 
 function getMovie(id){
   return movies[id];
+}
+
+function isBonus(rent){
+  return(getMovie(rent.movieID).code === "new" && rent.days > 2);
 }
 
 console.log(statement(customer, movies))
