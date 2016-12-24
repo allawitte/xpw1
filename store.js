@@ -27,19 +27,15 @@ function statement(customer, movies) {
   }
 
   for (let rent of customer.rentals) {
-    let thisAmount = 0;
-
-    // determine amount for each movie
-    thisAmount = calculateAmount (thisAmount, rent);
-
+    
     //add frequent renter points
     frequentRenterPoints++;
     // add bonus for a two day new release rental
     if (movies[rent.movieID].code === "new" && rent.days > 2) frequentRenterPoints++;
 
     //print figures for this rental
-    result += `\t${movies[rent.movieID].title}\t${thisAmount}\n`;
-    totalAmount += thisAmount;
+    result += `\t${movies[rent.movieID].title}\t${calculateAmount (0, rent)}\n`;
+    totalAmount += calculateAmount (0, rent);
   }
   // add footer lines
   result += `Amount owed is ${totalAmount}\n`;
