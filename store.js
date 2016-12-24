@@ -86,8 +86,23 @@ function outPut (customerReport, mode) {
         report+=`Amount owed is ${customerReport.totalAmount}\n`;
         report+=`You earned ${customerReport.totalfrequentRenterPoints} frequent renter points\n`;
     }
+    if (mode==='html') {
+        report=`<h2>Rental Record for ${customerReport.customerName}</h2>`;
+        report += '<table>';
+        report += '<tr><th>Movie Name</th><th>Rent</th></tr>';
+
+        customerReport.movies.forEach (item => {
+            report += '<tr>';
+            report += `<td>${item.name}<\td><td>${item.amount}</td>`;
+            report += '</tr>';
+        });
+        report += '</table>';
+        report+=`<h4>Amount owed is ${customerReport.totalAmount}</h4>`;
+        report+=`<h4>You earned ${customerReport.totalfrequentRenterPoints} frequent renter points</h4>`;
+    }
 
     return report;
 }
 
 console.log (statement (customer, movies, 'txt'))
+console.log (statement (customer, movies, 'html'))
