@@ -4,6 +4,10 @@ function statement(customer, movies) {
   let totalAmount = 0;
   let totalfrequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
+  let customerReport = {
+    customerName: customer.name
+  };
+  customerReport.movies = [];
 
   function calculateAmount (rent) {
     let thisAmount = 0;
@@ -35,10 +39,16 @@ function statement(customer, movies) {
     if (isBonus(rent)) totalfrequentRenterPoints++;
 
     //print figures for this rental
+    customerReport.movies.push({
+      name: getMovie(rent.movieID).title,
+      amount: calculateAmount (rent)
+    });
     result += `\t${getMovie(rent.movieID).title}\t${calculateAmount (rent)}\n`;
     totalAmount += calculateAmount (rent);
   }
   // add footer lines
+  customerReport.totalAmount = totalAmount;
+  customerReport.totalfrequentRenterPoints = totalfrequentRenterPoints;
   result += `Amount owed is ${totalAmount}\n`;
   result += `You earned ${totalfrequentRenterPoints} frequent renter points\n`;
 
