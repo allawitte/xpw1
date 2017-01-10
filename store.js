@@ -1,108 +1,58 @@
-"use strict";
+'use strict';
+function statement(customer, movies) {
+    let totalAmount = 0;
+    let frequentRenterPoints = 0;
+    let result = `Rental Record for ${customer.name}\n`;
+    for (let r of customer.rentals) {
+        let movie = movies[r.movieID];
+        let thisAmount = 0;
 
-function statement (customer, movies, mode) {
-    let customerReport={
-        customerName: customer.name,
-        totalfrequentRenterPoints: 0,
-        totalAmount: 0
-    };
-    customerReport.movies=[];
-
-    function calculateAmount (rent) {
-        let thisAmount=0;
-        switch (getMovie (rent.movieID).code) {
+        // determine amount for each movie
+        switch (movie.code) {
             case "regular":
-                thisAmount=2;
-                if (rent.days>2) {
-                    thisAmount+=(rent.days-2)*1.5;
+                thisAmount = 2;
+                if (r.days > 2) {
+                    thisAmount += (r.days - 2) * 1.5;
                 }
                 break;
             case "new":
-                thisAmount=rent.days*3;
+                thisAmount = r.days * 3;
                 break;
             case "childrens":
-                thisAmount=1.5;
-                if (rent.days>3) {
-                    thisAmount+=(rent.days-3)*1.5;
+                thisAmount = 1.5;
+                if (r.days > 3) {
+                    thisAmount += (r.days - 3) * 1.5;
                 }
                 break;
         }
-        return thisAmount;
+
+        //add frequent renter points
+        frequentRenterPoints++;
+        // add bonus for a two day new release rental
+        if(movie.code === "new" && r.days > 2) frequentRenterPoints++;
+
+        //print figures for this rental
+        result += `\t${movie.title}\t${thisAmount}\n` ;
+        totalAmount += thisAmount;
     }
+    // add footer lines
+    result += `Amount owed is ${totalAmount}\n`;
+    result += `You earned ${frequentRenterPoints} frequent renter points\n`;
 
-    for (let rent of customer.rentals) {
-
-        customerReport.totalfrequentRenterPoints++;
-        if (isBonus (rent)) totalfrequentRenterPoints++;
-
-        customerReport.movies.push ({
-            name: getMovie (rent.movieID).title,
-            amount: calculateAmount (rent)
-        });
-        customerReport.totalAmount+=calculateAmount (rent);
-    }
-
-    return outPut (customerReport, mode);
+    return result;
 }
-
-let customer={
-    name: "martin",
-    rentals: [{
-        "movieID": "F001",
-        "days": 3
-    }, {
-        "movieID": "F002",
-        "days": 1
-    },]
-}
-
-let movies={
-    "F001": {
-        "title": "Ran",
-        "code": "regular"
-    },
-    "F002": {
-        "title": "Trois Couleurs: Bleu",
-        "code": "regular"
-    },
+var customer = {
+    "name": "martin",
+    "rentals": [
+    {"movieID": "F001", "days": 3},
+    {"movieID": "F002", "days": 1}
+]
+};
+var movies = {
+    "F001": {"title": "Ran",                     "code": "regular"},
+    "F002": {"title": "Trois Couleurs: Bleu",     "code": "regular"}
     // etc
 };
-
-function getMovie (id) {
-    return movies[id];
-}
-
-function isBonus (rent) {
-    return (getMovie (rent.movieID).code==="new"&&rent.days>2);
-}
-
-function outPut (customerReport, mode) {
-    var report='';
-    if (mode==='txt') {
-        report=`Rental Record for ${customerReport.customerName}\n`;
-        customerReport.movies.forEach (item => {
-            report+=`\t${item.name}\t${item.amount}\n`;
-        });
-        report+=`Amount owed is ${customerReport.totalAmount}\n`;
-        report+=`You earned ${customerReport.totalfrequentRenterPoints} frequent renter points\n`;
-    }
-    if (mode==='html') {
-        report=`<h2>Rental Record for ${customerReport.customerName}</h2>`;
-        report += '<table>';
-        report += '<tr><th>Movie Name</th><th>Rent</th></tr>';
-
-        customerReport.movies.forEach (item => {
-            report += '<tr>';
-            report += `<td>${item.name}<\td><td>${item.amount}</td>`;
-            report += '</tr>';
-        });
-        report += '</table>';
-        report+=`<h4>Amount owed is ${customerReport.totalAmount}</h4>`;
-        report+=`<h4>You earned ${customerReport.totalfrequentRenterPoints} frequent renter points</h4>`;
-    }
-
-    return report;
-}
-
-console.log (statement (customer, movies, 'txt'))
-console.log (statement (customer, movies, 'html'))
+console.log(statement(customer, movies));/**
+ * Created by HP on 1/10/2017.
+ */
