@@ -48,14 +48,10 @@ function totalFrequentRenterPoints() {
 function statement(customer) {
     let result = `Rental Record for ${customer.name}\n`;
     function totalRecords() {
-        let result = ``;
-        for (let rental of customer.rentals) {
-
-            result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
-
-        }
-        console.log('result', result);
-        return result;
+        return customer.rentals
+            .reduce((sum, rental) => {
+                return sum + `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
+            },'');
     }
 
     result += totalRecords();
