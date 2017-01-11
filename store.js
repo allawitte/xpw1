@@ -43,10 +43,19 @@ function statement(customer, movies) {
         return result;
     }
 
+    function frequentRenterPointsForCustomer(rental) {
+
+        return (movieFor(rental).code === "new" && rental.days > 2)? 2 : 1;
+
+    }
+
     function totalFrequentRenterPoints() {
         return customer.rentals
+            .map((rental) =>
+                frequentRenterPointsForCustomer(rental)
+            )
             .reduce((sum, value) => {
-                return sum + value;
+                    return sum + value
             });
     }
 
