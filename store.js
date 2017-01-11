@@ -32,10 +32,9 @@ function statement(customer, movies) {
     }
 
     function frequentRenterPointsForCustomer(rental) {
-        let result = 1;
 
-        if (movieFor(rental).code === "new" && rental.days > 2) result++;
-        return result;
+        return (movieFor(rental).code === "new" && rental.days > 2)? 2 : 1;
+
     }
 
     for (let rental of customer.rentals) {
