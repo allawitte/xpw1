@@ -1,12 +1,18 @@
 'use strict';
 function statement(customer, movies) {
-    let result = `Rental Record for ${customer.name}\n`;
 
-    for (let rental of customer.rentals) {
 
-        result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n` ;
+    function totalRecords() {
+        let result = `Rental Record for ${customer.name}\n`;
+        for (let rental of customer.rentals) {
 
+            result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
+
+        }
+        return result;
     }
+
+    let result = totalRecords();
 
 
 
@@ -62,8 +68,9 @@ function statement(customer, movies) {
     function totalAmount() {
         return customer.rentals
             .reduce((sum, value) => {
-                return sum + value;
-            });
+
+                return sum + getAmount(value);
+            }, 0);
 
     }
 }
