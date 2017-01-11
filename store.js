@@ -45,7 +45,7 @@ function totalFrequentRenterPoints() {
             return sum + value
         });
 }
-function totalRecords(customer) {
+function getRecords(customer) {
     return customer.rentals
         .reduce((sum, rental) => {
             return sum + `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
@@ -62,7 +62,7 @@ function getFooter() {
 function statement(customer) {
     let result = getHeader(customer);
 
-    result += totalRecords(customer);
+    result += getRecords(customer);
 
     result += getFooter();
 
