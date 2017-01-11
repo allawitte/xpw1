@@ -51,16 +51,20 @@ function totalRecords(customer) {
             return sum + `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
         },'');
 }
+function getHeader(customer) {
+    return `Rental Record for ${customer.name}\n`;
+}
+function getFooter() {
+    let result = `Amount owed is ${totalAmount()}\n`;
+    result += `You earned ${totalFrequentRenterPoints()} frequent renter points\n`;
+    return result;
+}
 function statement(customer) {
-    let result = `Rental Record for ${customer.name}\n`;
+    let result = getHeader(customer);
 
     result += totalRecords(customer);
 
-
-
-    // add footer lines
-    result += `Amount owed is ${totalAmount()}\n`;
-    result += `You earned ${totalFrequentRenterPoints()} frequent renter points\n`;
+    result += getFooter();
 
     return result;
 
