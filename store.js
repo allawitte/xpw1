@@ -2,6 +2,27 @@
 function movieFor(rental) {
     return movies[rental.movieID];
 }
+function getAmount(rental) {
+    let result = 0;
+    switch (movieFor(rental).code) {
+        case "regular":
+            result = 2;
+            if (rental.days > 2) {
+                result += (rental.days - 2) * 1.5;
+            }
+            break;
+        case "new":
+            result = rental.days * 3;
+            break;
+        case "childrens":
+            result = 1.5;
+            if (rental.days > 3) {
+                result += (rental.days - 3) * 1.5;
+            }
+            return result;
+    }
+    return result;
+}
 function statement(customer) {
     function totalRecords() {
         let result = `Rental Record for ${customer.name}\n`;
@@ -24,27 +45,7 @@ function statement(customer) {
     return result;
 
 
-    function getAmount(rental) {
-        let result = 0;
-        switch (movieFor(rental).code) {
-            case "regular":
-                result = 2;
-                if (rental.days > 2) {
-                    result += (rental.days - 2) * 1.5;
-                }
-                break;
-            case "new":
-                result = rental.days * 3;
-                break;
-            case "childrens":
-                result = 1.5;
-                if (rental.days > 3) {
-                    result += (rental.days - 3) * 1.5;
-                }
-                return result;
-        }
-        return result;
-    }
+    
 
     function frequentRenterPointsForCustomer(rental) {
 
