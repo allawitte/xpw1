@@ -45,16 +45,16 @@ function totalFrequentRenterPoints() {
             return sum + value
         });
 }
+function totalRecords(customer) {
+    return customer.rentals
+        .reduce((sum, rental) => {
+            return sum + `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
+        },'');
+}
 function statement(customer) {
     let result = `Rental Record for ${customer.name}\n`;
-    function totalRecords() {
-        return customer.rentals
-            .reduce((sum, rental) => {
-                return sum + `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
-            },'');
-    }
 
-    result += totalRecords();
+    result += totalRecords(customer);
 
 
 
