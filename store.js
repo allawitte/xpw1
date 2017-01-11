@@ -1,7 +1,8 @@
 'use strict';
-function statement(customer, movies) {
-
-
+function movieFor(rental) {
+    return movies[rental.movieID];
+}
+function statement(customer) {
     function totalRecords() {
         let result = `Rental Record for ${customer.name}\n`;
         for (let rental of customer.rentals) {
@@ -21,10 +22,6 @@ function statement(customer, movies) {
     result += `You earned ${totalFrequentRenterPoints()} frequent renter points\n`;
 
     return result;
-
-    function movieFor(rental) {
-        return movies[rental.movieID];
-    }
 
 
     function getAmount(rental) {
@@ -86,6 +83,6 @@ var movies = {
     "F002": {"title": "Trois Couleurs: Bleu",     "code": "regular"}
     // etc
 };
-console.log(statement(customer, movies));/**
+console.log(statement(customer));/**
  * Created by HP on 1/10/2017.
  */
