@@ -10,25 +10,25 @@ function statement(customer, movies) {
 
 
     function getAmount(rental) {
-        let thisAmount = 0;
+        let result = 0;
         switch (movieFor(rental).code) {
             case "regular":
-                thisAmount = 2;
+                result = 2;
                 if (rental.days > 2) {
-                    thisAmount += (rental.days - 2) * 1.5;
+                    result += (rental.days - 2) * 1.5;
                 }
                 break;
             case "new":
-                thisAmount = rental.days * 3;
+                result = rental.days * 3;
                 break;
             case "childrens":
-                thisAmount = 1.5;
+                result = 1.5;
                 if (rental.days > 3) {
-                    thisAmount += (rental.days - 3) * 1.5;
+                    result += (rental.days - 3) * 1.5;
                 }
-                break;
+                return result;
         }
-        return thisAmount;
+        return result;
     }
 
     function frequentRenterPointsForCustomer(rental) {
