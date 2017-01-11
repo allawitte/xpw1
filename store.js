@@ -1,7 +1,6 @@
 'use strict';
 function statement(customer, movies) {
     let totalAmount = 0;
-    let frequentRenterPoints = 0;
     let result = `Rental Record for ${customer.name}\n`;
 
     function movieFor(rental) {
@@ -57,7 +56,7 @@ function statement(customer, movies) {
     }
     // add footer lines
     result += `Amount owed is ${totalAmount}\n`;
-    result += `You earned ${frequentRenterPoints} frequent renter points\n`;
+    result += `You earned ${totalFrequentRenterPoints()} frequent renter points\n`;
 
     return result;
 }
