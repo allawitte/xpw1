@@ -46,17 +46,19 @@ function totalFrequentRenterPoints() {
         });
 }
 function statement(customer) {
+    let result = `Rental Record for ${customer.name}\n`;
     function totalRecords() {
-        let result = `Rental Record for ${customer.name}\n`;
+        let result = ``;
         for (let rental of customer.rentals) {
 
             result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
 
         }
+        console.log('result', result);
         return result;
     }
 
-    let result = totalRecords();
+    result += totalRecords();
 
 
 
