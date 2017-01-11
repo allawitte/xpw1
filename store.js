@@ -23,6 +23,20 @@ function getAmount(rental) {
     }
     return result;
 }
+function frequentRenterPointsForCustomer(rental) {
+
+    return (movieFor(rental).code === "new" && rental.days > 2)? 2 : 1;
+
+}
+function totalFrequentRenterPoints() {
+    return customer.rentals
+        .map((rental) =>
+            frequentRenterPointsForCustomer(rental)
+        )
+        .reduce((sum, value) => {
+            return sum + value
+        });
+}
 function statement(customer) {
     function totalRecords() {
         let result = `Rental Record for ${customer.name}\n`;
@@ -44,24 +58,6 @@ function statement(customer) {
 
     return result;
 
-
-    
-
-    function frequentRenterPointsForCustomer(rental) {
-
-        return (movieFor(rental).code === "new" && rental.days > 2)? 2 : 1;
-
-    }
-
-    function totalFrequentRenterPoints() {
-        return customer.rentals
-            .map((rental) =>
-                frequentRenterPointsForCustomer(rental)
-            )
-            .reduce((sum, value) => {
-                    return sum + value
-            });
-    }
 
     function totalAmount() {
         return customer.rentals
