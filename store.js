@@ -60,12 +60,11 @@ function statement(customer, movies) {
     }
 
     function totalAmount() {
-        let result = 0;
-        for (let rental of customer.rentals) {
+        return customer.rentals
+            .reduce((sum, value) => {
+                return sum + value;
+            });
 
-            result += getAmount(rental);
-        }
-        return result;
     }
 }
 var customer = {
