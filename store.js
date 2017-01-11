@@ -31,13 +31,17 @@ function statement(customer, movies) {
         return thisAmount;
     }
 
+    function frequentRenterPointsForCustomer(rental) {
+        frequentRenterPoints++;
+        // add bonus for a two day new release rental
+        if (movieFor(rental).code === "new" && rental.days > 2) frequentRenterPoints++;
+    }
+
     for (let rental of customer.rentals) {
 
 
         //add frequent renter points
-        frequentRenterPoints++;
-        // add bonus for a two day new release rental
-        if(movieFor(rental).code === "new" && rental.days > 2) frequentRenterPoints++;
+        frequentRenterPoints =+ frequentRenterPointsForCustomer(rental);
 
         //print figures for this rental
         result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n` ;
