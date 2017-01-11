@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d0ed9a13-664b-46dc-a601-a57da87141e6" name="Default" comment="">
+    <list default="true" id="d0ed9a13-664b-46dc-a601-a57da87141e6" name="Default" comment="totalFrecventRentalPoints to global scope&#10;&#10;&#10;&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store.js" afterPath="$PROJECT_DIR$/store.js" />
     </list>
@@ -37,8 +37,8 @@
       <file leaf-file-name="store.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+            <state relative-caret-position="43">
+              <caret line="25" column="40" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="40" />
               <folding>
                 <element signature="n#!!block;n#getAmount#0" expanded="false" />
               </folding>
@@ -252,7 +252,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482538042386</updated>
-      <workItem from="1484085596318" duration="11438000" />
+      <workItem from="1484085596318" duration="11543000" />
     </task>
     <task id="LOCAL-00001" summary="rename r to rent">
       <created>1482540267301</created>
@@ -387,11 +387,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484100075990</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="totalFrecventRentalPoints to global scope&#10;&#10;&#10;&#10;">
+      <created>1484100201181</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1484100201181</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11438000" />
+    <option name="totallyTimeSpent" value="11543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -450,7 +457,8 @@
     <MESSAGE value="totalAmount refactored fixed error&#10;&#10;&#10;" />
     <MESSAGE value="movieFor to global scope&#10;&#10;&#10;&#10;" />
     <MESSAGE value="getAmount to global scope&#10;&#10;&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="getAmount to global scope&#10;&#10;&#10;&#10;" />
+    <MESSAGE value="totalFrecventRentalPoints to global scope&#10;&#10;&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="totalFrecventRentalPoints to global scope&#10;&#10;&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -499,8 +507,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+        <state relative-caret-position="43">
+          <caret line="25" column="40" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="40" />
           <folding>
             <element signature="n#!!block;n#getAmount#0" expanded="false" />
           </folding>
